@@ -1,12 +1,10 @@
-const { app } = require('@azure/functions');
-
 const { app, input } = require('@azure/functions');
 
 const cosmosInput = input.cosmosDB({
     databaseName: 'DemoDatabase',
     containerName: 'Items',
     connection: 'CosmosDB',
-    sqlQuery: "select * from c"
+    sqlQuery: "SELECT * FROM c"
 });
 
 app.http('getItems', {
