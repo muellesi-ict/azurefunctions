@@ -68,6 +68,9 @@ provider "azurerm" {
   }
 }
 ```
+
+### Löschen von Ressourcen
+Wenn Sie eine Ressource aus Ihrer main.tf-Datei entfernen und dann terraform apply ausführen, wird Terraform erkennen, dass diese Ressource nicht mehr in Ihrer Konfiguration definiert ist. Terraform wird dann versuchen, diese Ressource in Ihrer Infrastruktur zu zerstören, um den Zustand Ihrer Infrastruktur mit der Konfiguration in Ihrer main.tf-Datei abzugleichen.
  
 ## Azure Terraform Setup
 
