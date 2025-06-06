@@ -20,6 +20,14 @@ resource "azurerm_service_plan" "example" {
   sku_name            = "S1"
 }
 
+resource "azurerm_storage_account" "example" {
+  name                     = var.azure_storage_account_name
+  resource_group_name      = azurerm_resource_group.example.name
+  location                 = azurerm_resource_group.example.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
 resource "azurerm_linux_web_app" "example" {
   name                = var.app_service_name
   location            = azurerm_resource_group.example.location
@@ -28,8 +36,8 @@ resource "azurerm_linux_web_app" "example" {
 
   site_config {
     application_stack {
-      node_version = "20-lts"
+      node_version = var.node_version
     }
   }
+  app_settings = var.app_settings
 }
-
