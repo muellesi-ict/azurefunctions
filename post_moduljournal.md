@@ -5,22 +5,21 @@
 - [ ] trello jede stunde aktualisieren
 - [ ] 
 
-### Theorie Fragen
+## Learnings
 
-**Was ist das CIA-Prinzip?**
+### Was ist das CIA-Prinzip?**
 Geheimniskrämerei - wie beim Geheimdienst. Ein guter Ausgangspunkt für die Anektote. Ein Senior Developer würde sicherstellen, dass alle Daten verschlüsselt sind. Immer, sowohl bei der Übertragung als im Ruhezustand *(Confidentiality = Vertraulichkeit)*. Er würde Backups und Integritätsprüfungen durchführen, um zu verhindern, dass Daten verändert werden *(Integrity = Integrität)*. Er würde Systeme redundant einrichten, um die Verfügbarkeitzu gewährleisten *(Availability = Verfügbarkeit)*.
 
-1. **Wieso ist dies in der Cloud ebenfalls sehr wichtig?**
-   - **Umsetzung in der Praxis**: In der Cloud würde ein Senior Developer zusätzliche Sicherheitsmaßnahmen wie Multi-Faktor-Authentifizierung (MFA) und Netzwerksicherheitsgruppen einrichten. Er würde auch sicherstellen, dass alle Daten in verschiedenen geografischen Regionen repliziert werden, um die Verfügbarkeit zu erhöhen und die Datenintegrität durch regelmäßige Snapshots zu sichern.
+Nun gut, aber warum muss ich das im Cloud Modul wissen? In der Cloud sind diese drei Prinzipien genauso relevant. Cloud heisst ja nur, dass ich das Computing auslagere. Ich muss die CloudInfrastruktur schützen mit (MFA) und Firewalls. Ich muss meine Hochverfügbarkeit regeln, Redundanzen nutzen die mir Azure anbietet.
 
-2. **Wozu dienen die Tags in Azure?**
-   - **Umsetzung in der Praxis**: Ein Senior Developer würde Tags verwenden, um Ressourcen nach Projekten, Abteilungen oder Umgebungen (z.B. Entwicklung, Test, Produktion) zu kategorisieren. Dies erleichtert die Kostenverfolgung und das Management von Ressourcen. Er könnte auch Automatisierungsskripte schreiben, die auf Basis dieser Tags Ressourcen verwalten.
+### Wozu dienen die Tags in Azure?
+Vorallem für das Monitoring meiner Ressourcen. Wie auf Zalando, gibt es Filter, die ich anwenden kann. Wenn ich ein Bestatter bin, filtere ich nach "schwarz", "langarm", "Baumwolle" und noch eine Grössenangabe. Aber die Filter funktionieren nur, weil die einzelneln Kleidungsstücke (In Azure die Ressourcen) mit Tags versetzt werden. Jeder Wert der ein Filter auslesen kann ist ein Tag. Zum beispiel "Tag:Wert" ist dann "Farbe:Schwarz". Auch in Skripten für die Automatisierung können Tags sich nützlich erweisen.
 
-3. **Kann man sagen, welches Betriebskonzept (IaaS, PaaS oder SaaS) man 
-4. benutzen soll?**
+1. **Kann man sagen, welches Betriebskonzept (IaaS, PaaS oder SaaS) man 
+2. benutzen soll?**
    - **Umsetzung in der Praxis**: Ein Senior Developer würde eine Bedarfsanalyse durchführen, um das passende Betriebskonzept zu wählen. Für ein Projekt mit spezifischen Infrastruktur-Anforderungen könnte er IaaS wählen, um volle Kontrolle zu haben. Für ein Entwicklerteam, das sich auf die Anwendungsentwicklung konzentrieren möchte, wäre PaaS die bessere Wahl. Für Standardanwendungen wie E-Mail oder CRM-Systeme würde er SaaS-Lösungen bevorzugen, um Wartungsaufwand zu minimieren.
 
-5. **Beschreibe den Aufbau einer Azure Region in deinen eigenen Worten.**
+3. **Beschreibe den Aufbau einer Azure Region in deinen eigenen Worten.**
    - **Umsetzung in der Praxis**: Ein Senior Developer würde den Aufbau einer Azure Region nutzen, um hochverfügbare und ausfallsichere Anwendungen zu entwerfen. Er würde sicherstellen, dass Anwendungen in mehreren Availability Zones bereitgestellt werden, um die Ausfallsicherheit zu erhöhen. Zudem würde er die geografische Verteilung von Regionen nutzen, um Latenzzeiten zu minimieren und die Compliance mit lokalen Datenschutzbestimmungen sicherzustellen.
 
 ### Architektur

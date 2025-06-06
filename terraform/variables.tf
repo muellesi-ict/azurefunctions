@@ -1,53 +1,53 @@
 variable "location" {
-  description = "The Azure region where resources will be deployed"
+  description = "location"
   type        = string
   default     = "North Europe"
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group"
+  description = "resource_group_name"
   type        = string
   default     = "flypaper-upchuck-trimester-yearly"
 }
 
 variable "app_service_plan_name" {
-  description = "The name of the App Service Plan"
+  description = "app_service_plan_name"
   type        = string
   default     = "unlikable-rack-quarters-blitz"
 }
 
 variable "app_service_name" {
-  description = "The name of the App Service"
+  description = "app_service_name"
   type        = string
   default     = "proving-primary-work-rhyme"
 }
 
 variable "cosmos_db_account_name" {
-  description = "The name of the Cosmos DB account"
+  description = "cosmos_db_account_name"
   type        = string
   default     = "fever-retiring-reverse-iron"
 }
 
 variable "cosmos_db_name" {
-  description = "The name of the Cosmos DB database"
+  description = "cosmos_db_name"
   type        = string
   default     = "envelope-washbasin-unbounded-bobbing"
 }
 
 variable "cosmos_db_container_name" {
-  description = "The name of the Cosmos DB container"
+  description = "cosmos_db_container_name"
   type        = string
   default     = "require-glorifier-unscrew-untimely"
 }
 
 variable "node_version" {
-  description = "Die Node.js-Version, die ich überall verwende"
+  description = "node_version"
   type        = string
   default     = "20"
 }
 
 variable "function_app_settings" {
-  description = "Application settings for the Function App"
+  description = "function_app_settings"
   type        = map(string)
   default = {
     "ENABLE_ORYX_BUILD"              = "true",
@@ -57,7 +57,7 @@ variable "function_app_settings" {
 }
 
 variable "web_app_settings" {
-  description = "Application settings for the Web App"
+  description = "web_app_settings"
   type        = map(string)
   default = {
     "ENABLE_ORYX_BUILD"              = "true",
@@ -67,19 +67,19 @@ variable "web_app_settings" {
 }
 
 variable "azure_storage_account_name" {
-  description = "Name des Storage-Accounts"
+  description = "azure_storage_account_name"
   type        = string
   default     = "paternalargueboring"
 }
 
 variable "function_app_name" {
-  description = "Name der Funcion-App"
+  description = "function_app_name"
   type        = string
   default     = "margin-lavish-stage-spindle"
 }
 
 variable "web_app_name" {
-  description = "Name der Web-App"
+  description = "web_app_name"
   type        = string
   default     = "footman-chaffing-ebook-autograph"
 }
