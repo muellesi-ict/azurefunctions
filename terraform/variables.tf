@@ -62,7 +62,7 @@ variable "web_app_settings" {
   default = {
     "ENABLE_ORYX_BUILD"              = "true",
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true",
-    "FUNC_URL"                       = "https://example-function-app.azurewebsites.net/api/getItems"
+    "FUNC_URL"                       = "https://margin-lavish-stage-spindle.azurewebsites.net/api/items?"
   }
 }
 
