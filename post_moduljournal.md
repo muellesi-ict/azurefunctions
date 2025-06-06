@@ -208,16 +208,7 @@ terraform init
 Führen Sie die `terraform import`-Befehle aus, um die Ressourcengruppen in den Terraform-Status zu importieren:
 
 ```bash
-terraform import azurerm_resource_group.DefaultResourceGroup_CCAN /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/DefaultResourceGroup-CCAN
-terraform import azurerm_resource_group.DefaultResourceGroup_EAU /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/DefaultResourceGroup-EAU
-terraform import azurerm_resource_group.dev_rg_backup /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/dev-rg-backup
-terraform import azurerm_resource_group.dev_rg_net /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/dev-rg-net
-terraform import azurerm_resource_group.dev_rg_vm01_mmt /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/dev-rg-vm01-mmt
-terraform import azurerm_resource_group.dev_rg_web01_as /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/dev-rg-web01-as
-terraform import azurerm_resource_group.dev_rg_web01_db /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/dev-rg-web01-db
-terraform import azurerm_resource_group.NetworkWatcherRG /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/NetworkWatcherRG
-terraform import azurerm_resource_group.testdasfasdfke /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/testdasfasdfke
-terraform import azurerm_resource_group.testdsafewak_group /subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/testdsafewak_group
+terraform import azurerm_resource_group.DefaultResourceGroup_CCAN/subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/DefaultResourceGroup-CCAN
 ```
 
 ## Schritt 6: Terraform-Status überprüfen
@@ -240,3 +231,116 @@ terraform apply -destroy
 Bestätigen Sie die Löschung, wenn Sie dazu aufgefordert werden.
 
 Mit diesen Schritten können Sie bestehende Azure-Ressourcengruppen in Terraform importieren und löschen, um Ihre Infrastruktur als Code zu verwalten.
+
+
+# Lernjournal: First Principles, Hacks und Best Practices für Terraform CI/CD
+
+## Einführung
+
+Willkommen zu unserem Lernjournal, das sich auf First Principles, Hacks und Best Practices für Terraform und CI/CD (Continuous Integration/Continuous Deployment) konzentriert. Dieses Journal ist speziell für Plattform-Ingenieure und Senior-Entwickler konzipiert, die mit Terraform arbeiten und ihre CI/CD-Pipelines optimieren möchten. Wir werden auch spezifische Szenarien wie die Integration von Web-Apps mit GitHub Actions, Azure Functions und Cosmos DB berücksichtigen.
+
+## Grundprinzipien (First Principles)
+
+### Infrastructure as Code (IaC)
+
+Infrastructure as Code ist ein grundlegendes Prinzip, bei dem die Infrastruktur als Code definiert und versioniert wird. Dies ermöglicht Wiederholbarkeit und Konsistenz in der Bereitstellung von Ressourcen.
+
+### Unveränderlichkeit
+
+Das Prinzip der Unveränderlichkeit besagt, dass Infrastruktur einmal erstellt und nicht verändert werden sollte. Stattdessen sollten neue Ressourcen erstellt und alte zerstört werden, um Konsistenz und Stabilität zu gewährleisten.
+
+### Automatisierung
+
+Automatisierung ist entscheidend, um menschliche Fehler zu minimieren und die Effizienz zu steigern. Jeder Schritt im CI/CD-Prozess sollte automatisiert werden, von Tests bis zur Bereitstellung.
+
+### Modularität
+
+Modularer Terraform-Code ermöglicht Wiederverwendbarkeit und einfache Wartung. Durch die Aufteilung des Codes in Module kann jeder Teil unabhängig entwickelt, getestet und bereitgestellt werden.
+
+### Sicherheit
+
+Sicherheitsbest Practices sollten von Anfang an integriert werden. Dies umfasst die sichere Verwaltung von Geheimnissen, Zugriffskontrollen und die Einhaltung von Compliance-Richtlinien.
+
+## Kreative Lösungen und Hacks
+
+### Umgang mit Umgebungsvariablen in GitHub Actions
+
+GitHub Actions kennt keine Umgebungsvariablen für bestimmte Befehle wie `npm install`. Eine kreative Lösung besteht darin, die Umgebungsvariablen direkt in den Skripten zu setzen oder ein separates Skript zu verwenden, um die Variablen zu laden.
+
+### Build-Prozess in Azure
+
+Durch die Nutzung von Azure Pipelines oder Azure DevOps für den Build-Prozess können Umgebungsvariablen effektiv genutzt werden. Diese Tools sind darauf ausgelegt, mit den spezifischen Anforderungen von Azure zu arbeiten und bieten eine nahtlose Integration.
+
+## Best Practices für Senior Entwickler
+
+### Terraform State Management
+
+Die Verwendung von Remote Backends wie Azure Blob Storage zum Speichern des Terraform States ermöglicht die Zusammenarbeit im Team und schützt vor Datenverlust. Dies stellt sicher, dass der Zustand der Infrastruktur immer aktuell und sicher ist.
+
+### Geheimnisverwaltung
+
+Tools wie Azure Key Vault sollten verwendet werden, um Geheimnisse sicher zu speichern und zu verwalten. Die Integration dieser Tools in die CI/CD-Pipeline stellt sicher, dass sensible Informationen geschützt sind.
+
+### Pipeline-Sicherheit
+
+Die Sicherheit der CI/CD-Pipeline ist von entscheidender Bedeutung. Dies umfasst die Implementierung von Zugriffsbeschränkungen und die sichere Verwaltung von Geheimnissen.
+
+### Monitoring und Logging
+
+Die Integration von Monitoring und Logging in die Infrastruktur hilft, Probleme frühzeitig zu erkennen und zu beheben. Tools wie Azure Monitor und Application Insights bieten umfassende Möglichkeiten zur Überwachung und Protokollierung.
+
+### Dokumentation
+
+Eine gründliche Dokumentation des Terraform-Codes und der CI/CD-Pipeline erleichtert das Onboarding neuer Teammitglieder und die Wartung des Codes. Dies sollte Best Practices, Architekturentscheidungen und Anleitungen zur Fehlerbehebung umfassen.
+
+## Spezifische Lösungen für dein Szenario
+
+### Umgebungsvariablen in GitHub Actions
+
+Durch das Setzen von Umgebungsvariablen in GitHub Actions Workflows können Skripte die benötigten Variablen nutzen. Dies ist besonders wichtig für Befehle, die diese Variablen benötigen, wie `npm install`.
+
+### Build-Prozess in Azure
+
+Azure Pipelines bieten eine robuste Lösung für den Build-Prozess, da sie die Umgebungsvariablen kennen und entsprechend nutzen können. Dies stellt sicher, dass der Build-Prozess reibungslos abläuft.
+
+### Terraform für Infrastruktur
+
+Terraform sollte verwendet werden, um die Azure-Funktion und Cosmos DB zu erstellen und zu verwalten. Durch die Speicherung des Terraform States in einem Remote Backend wie Azure Blob Storage wird die Konsistenz und Sicherheit der Infrastruktur gewährleistet.
+
+### Geheimnisverwaltung
+
+Azure Key Vault bietet eine sichere Lösung zur Verwaltung von Geheimnissen. Die Integration in die Terraform-Konfiguration und die CI/CD-Pipeline stellt sicher, dass sensible Informationen geschützt sind.
+
+### Monitoring und Logging
+
+Die Integration von Monitoring und Logging in die Infrastruktur hilft, Probleme frühzeitig zu erkennen und zu beheben. Dies ist entscheidend für die Aufrechterhaltung der Betriebskontinuität und die schnelle Reaktion auf Vorfälle.
+
+## CI/CD Pipeline
+
+### Nutzung der CI/CD Pipeline
+
+Eine CI/CD Pipeline automatisiert den Prozess des Testens, Bauens und Bereitstellens von Software. Dies stellt sicher, dass Änderungen schnell und sicher in die Produktion übernommen werden können.
+
+### Terraform Repository
+
+Ein Terraform Repository enthält die Definitionen der Infrastruktur als Code. Durch das Pushen dieser Dateien zu GitHub wird eine Historie der Änderungen erstellt, die die Zusammenarbeit und Wartung erleichtert.
+
+### Probleme mit Secrets und Terraform State
+
+Secrets und der Terraform State sollten nicht in das Git-Repository gepusht werden, da sie sensible Informationen enthalten. Die Verwendung von `.gitignore` stellt sicher, dass diese Dateien nicht versehentlich in das Repository aufgenommen werden.
+
+### Versionen von Runtimes und Einstellungen
+
+Die Verwendung von Variablen zur Speicherung von Versionen und Einstellungen erleichtert die Wartung und Anpassung des Codes. Dies stellt sicher, dass Änderungen zentral verwaltet werden können.
+
+### versions.tf Datei
+
+Die `versions.tf` Datei definiert die Versionen der Provider, die Terraform verwendet. Dies stellt sicher, dass alle Teammitglieder mit den gleichen Versionen arbeiten und Konsistenz gewährleistet ist.
+
+### Warum ein Senior Dev Versionen einsetzt
+
+Ein erfahrener Entwickler verwendet Versionen, um Konsistenz und Stabilität zu gewährleisten. Durch die Festlegung von Versionen werden unerwartete Änderungen vermieden und die Wartung des Projekts erleichtert.
+
+## Schlussfolgerung
+
+Dieses Lernjournal bietet einen umfassenden Überblick über wichtige First Principles, Hacks und Best Practices für Terraform und CI/CD. Durch die Anwendung dieser Prinzipien und Praktiken können Plattform-Ingenieure und Senior-Entwickler ihre Infrastruktur sicher und effizient verwalten. Wenn du spezifische Fragen hast oder weitere Details benötigst, lass es mich wissen!
