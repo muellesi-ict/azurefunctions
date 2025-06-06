@@ -52,7 +52,7 @@ variable "function_app_settings" {
   default = {
     "ENABLE_ORYX_BUILD"              = "true",
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true",
-    "CosmosDB"                       = "your-cosmos-db-connection-string"
+    "CosmosDB"                       = "AccountEndpoint=https://db-cosmos-prod-7a1dac5d.documents.azure.com:443/;AccountKey=KCFSwii8cpISoF2hWpOy02226gy0WnmSv1wqHYpzrx2rjKulMcH2s37whuVFlCmMJg5skQsL6gruACDb0IWGkA==;"
   }
 }
 
