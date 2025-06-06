@@ -13,23 +13,13 @@ Geheimniskrämerei - wie beim Geheimdienst. Ein guter Ausgangspunkt für die Ane
 Nun gut, aber warum muss ich das im Cloud Modul wissen? In der Cloud sind diese drei Prinzipien genauso relevant. Cloud heisst ja nur, dass ich das Computing auslagere. Ich muss die CloudInfrastruktur schützen mit (MFA) und Firewalls. Ich muss meine Hochverfügbarkeit regeln, Redundanzen nutzen die mir Azure anbietet.
 
 ### Wozu dienen die Tags in Azure?
-Vorallem für das Monitoring meiner Ressourcen. Wie auf Zalando, gibt es Filter, die ich anwenden kann. Wenn ich ein Bestatter bin, filtere ich nach "schwarz", "langarm", "Baumwolle" und noch eine Grössenangabe. Aber die Filter funktionieren nur, weil die einzelneln Kleidungsstücke (In Azure die Ressourcen) mit Tags versetzt werden. Jeder Wert der ein Filter auslesen kann ist ein Tag. Zum beispiel "Tag:Wert" ist dann "Farbe:Schwarz". Auch in Skripten für die Automatisierung können Tags sich nützlich erweisen.
+Vor allem für das Monitoring meiner Ressourcen. Wie auf Zalando, gibt es Filter, die ich anwenden kann. Wenn ich ein Bestatter bin, filtere ich nach "schwarz", "langarm", "Baumwolle" und noch eine Grössenangabe. Aber die Filter funktionieren nur, weil die einzelneln Kleidungsstücke (In Azure die Ressourcen) mit Tags versetzt werden. Jeder Wert der ein Filter auslesen kann ist ein Tag. Zum beispiel "Tag:Wert" ist dann "Farbe:Schwarz". Auch in Skripten für die Automatisierung können Tags sich nützlich erweisen.
 
-1. **Kann man sagen, welches Betriebskonzept (IaaS, PaaS oder SaaS) man 
-2. benutzen soll?**
-   - **Umsetzung in der Praxis**: Ein Senior Developer würde eine Bedarfsanalyse durchführen, um das passende Betriebskonzept zu wählen. Für ein Projekt mit spezifischen Infrastruktur-Anforderungen könnte er IaaS wählen, um volle Kontrolle zu haben. Für ein Entwicklerteam, das sich auf die Anwendungsentwicklung konzentrieren möchte, wäre PaaS die bessere Wahl. Für Standardanwendungen wie E-Mail oder CRM-Systeme würde er SaaS-Lösungen bevorzugen, um Wartungsaufwand zu minimieren.
+### (IaaS, PaaS oder SaaS)
+Stichwort "Arbeitsteilung" und Verantwortlichkeiten abschieben. SaaS Nutzer lassen sich ihr SChnitzel im Restaurant vom Kellner in Stücke schneiden und füttern. Hey, wir sind alle im gleichen Boot. Es gibt kein Smartphonebesitzer der nicht SaaS Nutzer ist. Und das ist okay. SaaS ist die Möglichkeit jemandem ein Softwareprodukt zur Verfügungzustellen, das funktioiert und als Werkzeug dient. Niemand will sein digitales Leben selbst coden. Sonst müsstest du zuerst dein Testament und dein Bestattungsplan schreiben und auf Git pushen.
 
-3. **Beschreibe den Aufbau einer Azure Region in deinen eigenen Worten.**
-   - **Umsetzung in der Praxis**: Ein Senior Developer würde den Aufbau einer Azure Region nutzen, um hochverfügbare und ausfallsichere Anwendungen zu entwerfen. Er würde sicherstellen, dass Anwendungen in mehreren Availability Zones bereitgestellt werden, um die Ausfallsicherheit zu erhöhen. Zudem würde er die geografische Verteilung von Regionen nutzen, um Latenzzeiten zu minimieren und die Compliance mit lokalen Datenschutzbestimmungen sicherzustellen.
-
-### Architektur
-
-1. **Nenne 2 Informationsquellen, bei welchen man mehr Informationen zu Architekturen oder deren Dienste bekommen kann.**
-   - **Umsetzung in der Praxis**: Ein Senior Developer würde regelmäßig die Microsoft Docs und das Azure Architecture Center konsultieren, um sich über Best Practices und neue Dienste zu informieren. Er würde diese Ressourcen nutzen, um Architekturentscheidungen zu validieren und sicherzustellen, dass die gewählten Dienste den Anforderungen entsprechen.
-
-### Verfügbarkeit
-
-**Wie teilt man 10 VMs entsprechend aus, um eine möglichst gute Verfügbarkeit nach Best Practice zu erhalten?**
+**Paas** gibt mir mehr Entscheidungsfreiheit bezüglich Runtime. Ich sage aber nicht welche Version der Runtime benutzt wird. Ich gebe Azure den Code und gehe in die Ferien. Ähnlich das neue Buzzword **FaaS** Function as a Service. Kleine Codesnippets, die ich gratis ausführen kann, weil sie der CPU ein müdes Lächeln abzwingen und kaum Ressourcen brauchen. Zum Beispiel GitHub Actions und Azure Functions.
+**IaaS** Ist für die Schwitzer und Frühpensionierten, die Legacy Software laufen lassen wollen. Ist böse und trifft dem Hamster auf die Backe. Zumal bezüglich Runtime Environment. Denn nur special Usecases nuzen IaaS als RUntime Option. Eine VM hingegen ist eine legitime Form von IaaS. In der Informatik komme ich nicht ohne VMs aus. Die Argumentation dafür ist in meinem Legacy-Journal "Virtualisierung".
 
 - **Update Domains**: Ein Senior Developer würde sicherstellen, dass VMs auf verschiedene Update Domains verteilt sind, sodass bei einem Update nicht alle VMs gleichzeitig neu gestartet werden müssen.
 - **Fault Domains**: Er würde VMs auf verschiedene Fault Domains verteilen, um das Risiko eines gleichzeitigen Ausfalls zu minimieren.
@@ -42,8 +32,6 @@ Vorallem für das Monitoring meiner Ressourcen. Wie auf Zalando, gibt es Filter,
 - **Zone 1 in Region 1**: Bei einem Ausfall von Zone 1 in Region 1 würden nur die VMs in dieser Zone betroffen sein, was bei einer gleichmäßigen Verteilung etwa 2-3 VMs entspricht.
 - **Update Domain 1 hat Fehler**: Bei einem Fehler in Update Domain 1 würden nur die VMs in dieser Domain betroffen sein, was bei einer gleichmäßigen Verteilung etwa 1-2 VMs entspricht.
 - **Eine Fault Domain in Zone 1 der Region 2 fällt aus**: Bei einem Ausfall einer Fault Domain in Zone 1 der Region 2 würde nur eine VM betroffen sein, wenn die VMs gleichmäßig auf die Fault Domains verteilt sind.
-
-### Knacknuss: Architektur
 
 - **Umsetzung in der Praxis**: Ein Senior Developer würde eine Architektur für die IstSo GmbH entwerfen, die den App Service für die Webanwendung, Azure Functions für das Backend und Blob Storage sowie Azure Database for MySQL für die Datenablage nutzt. Er würde sicherstellen, dass alle Komponenten redundant und skalierbar sind, und würde die Architektur in Draw.io dokumentieren, um sie mit dem Team zu teilen und zu besprechen. Er würde auch sicherstellen, dass die Architektur den Sicherheits- und Compliance-Anforderungen entspricht.
 
@@ -101,166 +89,35 @@ project-root/
 └── ...
 ```
 
-## Voraussetzungen
+## Beispiel von Ergonomischen Files
+Ergonomisch arbeiten heisst, mit allen Fingern, Zehen und Bandscheiben in den Feierabend zu schlendern - im Handwerk. Aber auch, dass ich mein Werkstück fixieren kann und meine Fähigkeiten in Einklang stelle mit den Werkzeugen die ich zur Verfügung habe. Ich kann nicht eine Linie schneiden, wenn mein Werkstück herumflattert wie ein Speckt der sich im Volleyballnetz verfangen hat. Genauso in der IT. 
+Ich will nicht unnötig viel klicken, schreiben und Fenster switchen. Das vergeudet Zeit und Konzentration. EIn gutes Setup erleichtert mir die Arbeit und hilft mir Qualität zu liefern. Zum beispiel baue ich alles was ich schreiben muss in einen Codeblock. Namen von Optionen, Ressourcen, FIltern - das, was ich eintippen müsste in ein Inputfeld und Codesnipets. Damit schreibe ich ein 12 Zeichen langen Namen nciht 5 Mal unterschiedlich. Beispiel, kommt sofort.
 
-**Installiertes Terraform**
+**Terraform Installation kontrollieren**
 
 ```bash
 terraform --version
 ```
 
-**Installiertes Azure CLI**
+**Azure CLI Installation kontrollieren**
 
 ```bash
 az --version
 ```
 
-**Melden Sie sich bei Ihrem Azure-Konto an und wählen Sie die richtige Subscription aus:**
+**Melden dich beim Azure-Konto an und wählen die Subscription aus**
 
 ```bash
 az login
 ```
+
 ```
 az account set --subscription="<subscription-id>"
 ```
 
-## Schritt 2: Terraform Projekt einrichten
+Und dank Markdown-Rendering wird daraus ein Clipboard-Block. Danke GitHub, Microsoft und Hasicorp, dass ihr ein Standard setzt. Manchmal darf sich das Leben wie ein Tutorial anfühlen. Macht meinen Arbeitsalltag so flüssig wie der Pinot-Rosé im Gaumen.
 
-Erstellen Sie ein neues Verzeichnis für Ihr Terraform-Projekt und wechseln Sie in dieses Verzeichnis:
-
-```bash
-mkdir terraform-project
-cd terraform-project
-```
-
-## Schritt 3: Terraform-Konfiguration erstellen
-
-Erstellen Sie eine neue Datei namens `main.tf` und fügen Sie die grundlegende Konfiguration für den Azure-Provider hinzu:
-
-```hcl
-provider "azurerm" {
-  features {}
-  subscription_id = "1e8c48fb-7b50-41d8-bc34-83473faeb371"
-}
-
-resource "azurerm_resource_group" "DefaultResourceGroup_CCAN" {
-  name     = "DefaultResourceGroup-CCAN"
-  location = "Canada Central"
-}
-
-resource "azurerm_resource_group" "DefaultResourceGroup_EAU" {
-  name     = "DefaultResourceGroup-EAU"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "dev_rg_backup" {
-  name     = "dev-rg-backup"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "dev_rg_net" {
-  name     = "dev-rg-net"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "dev_rg_vm01_mmt" {
-  name     = "dev-rg-vm01-mmt"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "dev_rg_web01_as" {
-  name     = "dev-rg-web01-as"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "dev_rg_web01_db" {
-  name     = "dev-rg-web01-db"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "NetworkWatcherRG" {
-  name     = "NetworkWatcherRG"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "testdasfasdfke" {
-  name     = "testdasfasdfke"
-  location = "Australia East"
-}
-
-resource "azurerm_resource_group" "testdsafewak_group" {
-  name     = "testdsafewak_group"
-  location = "Canada Central"
-}
-```
-
-## Schritt 4: Terraform initialisieren
-
-Initialisieren Sie Terraform, um die Provider-Plugins herunterzuladen:
-
-```bash
-terraform init
-```
-
-## Schritt 5: Ressourcengruppen importieren
-
-Führen Sie die `terraform import`-Befehle aus, um die Ressourcengruppen in den Terraform-Status zu importieren:
-
-```bash
-terraform import azurerm_resource_group.DefaultResourceGroup_CCAN/subscriptions/1e8c48fb-7b50-41d8-bc34-83473faeb371/resourceGroups/DefaultResourceGroup-CCAN
-```
-
-## Schritt 6: Terraform-Status überprüfen
-
-Überprüfen Sie, ob die Ressourcen erfolgreich importiert wurden:
-
-```bash
-terraform state list
-```
-
-## Schritt 7: Ressourcen löschen
-
-Führen Sie `terraform plan -destroy` aus, um zu sehen, welche Ressourcen gelöscht werden, und dann `terraform apply -destroy`, um die Ressourcen tatsächlich zu löschen:
-
-```bash
-terraform plan -destroy
-terraform apply -destroy
-```
-
-Bestätigen Sie die Löschung, wenn Sie dazu aufgefordert werden.
-
-Mit diesen Schritten können Sie bestehende Azure-Ressourcengruppen in Terraform importieren und löschen, um Ihre Infrastruktur als Code zu verwalten.
-
-
-# Lernjournal: First Principles, Hacks und Best Practices für Terraform CI/CD
-
-## Einführung
-
-Willkommen zu unserem Lernjournal, das sich auf First Principles, Hacks und Best Practices für Terraform und CI/CD (Continuous Integration/Continuous Deployment) konzentriert. Dieses Journal ist speziell für Plattform-Ingenieure und Senior-Entwickler konzipiert, die mit Terraform arbeiten und ihre CI/CD-Pipelines optimieren möchten. Wir werden auch spezifische Szenarien wie die Integration von Web-Apps mit GitHub Actions, Azure Functions und Cosmos DB berücksichtigen.
-
-## Grundprinzipien (First Principles)
-
-### Infrastructure as Code (IaC)
-
-Infrastructure as Code ist ein grundlegendes Prinzip, bei dem die Infrastruktur als Code definiert und versioniert wird. Dies ermöglicht Wiederholbarkeit und Konsistenz in der Bereitstellung von Ressourcen.
-
-### Unveränderlichkeit
-
-Das Prinzip der Unveränderlichkeit besagt, dass Infrastruktur einmal erstellt und nicht verändert werden sollte. Stattdessen sollten neue Ressourcen erstellt und alte zerstört werden, um Konsistenz und Stabilität zu gewährleisten.
-
-### Automatisierung
-
-Automatisierung ist entscheidend, um menschliche Fehler zu minimieren und die Effizienz zu steigern. Jeder Schritt im CI/CD-Prozess sollte automatisiert werden, von Tests bis zur Bereitstellung.
-
-### Modularität
-
-Modularer Terraform-Code ermöglicht Wiederverwendbarkeit und einfache Wartung. Durch die Aufteilung des Codes in Module kann jeder Teil unabhängig entwickelt, getestet und bereitgestellt werden.
-
-### Sicherheit
-
-Sicherheitsbest Practices sollten von Anfang an integriert werden. Dies umfasst die sichere Verwaltung von Geheimnissen, Zugriffskontrollen und die Einhaltung von Compliance-Richtlinien.
-
-## Kreative Lösungen und Hacks
+## First Principles, Hacks und Best Practices für Terraform CI/CD
 
 ### Umgang mit Umgebungsvariablen in GitHub Actions
 
