@@ -43,22 +43,43 @@ variable "cosmos_db_container_name" {
 variable "node_version" {
   description = "Die Node.js-Version, die ich überall verwende"
   type        = string
-  default     = "20-lts"
+  default     = "20"
 }
 
-variable "app_settings" {
-  description = "Die Anwendungseinstellungen für die Web App"
+variable "function_app_settings" {
+  description = "Application settings for the Function App"
   type        = map(string)
-  default     = {
-    ENABLE_ORYX_BUILD = "true"
-    SCM_DO_BUILD_DURING_DEPLOYMENT = "true"
-    FUNC_URL = "https://example-function-app.azurewebsites.net/api/getItems"
-    CosmosDB = "your-cosmos-db-connection-string"
+  default = {
+    "ENABLE_ORYX_BUILD"              = "true",
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true",
+    "CosmosDB"                       = "your-cosmos-db-connection-string"
+  }
+}
+
+variable "web_app_settings" {
+  description = "Application settings for the Web App"
+  type        = map(string)
+  default = {
+    "ENABLE_ORYX_BUILD"              = "true",
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true",
+    "FUNC_URL"                       = "https://example-function-app.azurewebsites.net/api/getItems"
   }
 }
 
 variable "azure_storage_account_name" {
   description = "Name des Storage-Accounts"
   type        = string
-  default     = "overtime-elude-retrace-shortcake"
+  default     = "overtimeeluderetraceshor"
+}
+
+variable "function_app_name" {
+  description = "Name der Funcion-App"
+  type        = string
+  default     = "margin-lavish-stage-spindle"
+}
+
+variable "web_app_name" {
+  description = "Name der Web-App"
+  type        = string
+  default     = "footman-chaffing-ebook-autograph"
 }
