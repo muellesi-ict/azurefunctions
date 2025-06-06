@@ -69,7 +69,7 @@ variable "web_app_settings" {
 variable "azure_storage_account_name" {
   description = "Name des Storage-Accounts"
   type        = string
-  default     = "overtimeeluderetraceshor"
+  default     = "paternalargueboring"
 }
 
 variable "function_app_name" {
